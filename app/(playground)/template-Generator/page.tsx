@@ -52,22 +52,18 @@ export default function AIWebsiteGenerator() {
       const data = await res.json();
       
       if (data.text) {
-        // Add AI Response to chat
+      
         setChatHistory((prev) => [...prev, { role: 'ai', text: data.text }]);
 
-        // --- NEW LOGIC STARTS HERE ---
-
-        // 3. Extract content between triple backticks
-        // This regex captures any text inside ``` and ``` (non-greedy)
+        
         const codeBlockMatch = data.text.match(/```(?:html|xml|css|js|jsx|tsx)?\s*([\s\S]*?)```/);
 
         if (codeBlockMatch && codeBlockMatch[1]) {
             const extractedCode = codeBlockMatch[1].trim();
             console.log("Extracted Code:", extractedCode);
 
-            // 4. Send to Second API
-            // Replace '/api/render-preview' with your actual second endpoint
-            const secondRes = await fetch("./api/Gemini-talk", {
+          
+            const secondRes = await fetch("./api/Gemini-Gen", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code: extractedCode }),
@@ -76,12 +72,7 @@ export default function AIWebsiteGenerator() {
 
             if (webData.text) {
                 console.log(webData)
-            // Assuming the second API returns the final HTML or a URL to display
-            // For now, we assume it returns { parsedContent: "..." } or we just use extractedCode
-            // const secondData = await secondRes.json(); 
-            
-            // For demonstration, I'm setting the preview content to the extracted code
-            // You can change this to `secondData.html` based on your API response
+       
             setPreviewContent(extractedCode); 
 
             // 5. Automatically Close Chat & Show Preview
@@ -108,7 +99,7 @@ const toggleChatExpand = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full bg-white text-gray-900 font-sans overflow-aut">
+    <div className="flex flex-col h-screen w-full bg-white text-gray-900 font-sans overflow-auto">
       
       {/* TOP HEADER */}
       <header className="flex justify-between items-center px-6 py-4 border-b border-gray-200 flex-shrink-0 bg-white z-10">
@@ -146,11 +137,11 @@ const toggleChatExpand = () => {
                 </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+            <div className="flex-1 overflow-y-sroll space-y-4 pr-2">
                 {chatHistory.length === 0 ? (
                 <p className="text-sm text-gray-400 italic">Start a conversation...</p>
                 ) : (
-                <ul className="space-y-4">
+                <ul className="space-y-4 overflow-y-scroll">
                     {chatHistory.map((msg, index) => (
                     <li key={index} className={`text-sm ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
                         <div className={`inline-block p-2 rounded-lg ${msg.role === 'user' ? 'bg-gray-200 text-gray-800' : 'bg-white border border-gray-200 text-gray-600'}`}>
