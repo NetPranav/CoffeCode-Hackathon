@@ -40,12 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# /app/(auth)
-# /app/(playground)
-# /app/api
-
-# /components
-
-# /DataSet
-
-# /DataBase
+/temporary

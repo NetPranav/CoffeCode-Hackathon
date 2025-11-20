@@ -24,7 +24,7 @@ export default function Hero() {
       <h1 className="text-[50px] w-[600px] mt-[100px] text-white text-center">
         Just Type, and Watch It Come to Life.
       </h1>
-      <div className="flex justify-center items-center bg-white text-black py-6 px-8 mt-[50px]"
+      <div className="flex justify-center items-center bg-white text-black py-6 px-8 mt-[50px] cursor-pointer"
       onClick={handleGetStartedButton}>
         GET STARTED
       </div>

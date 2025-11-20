@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar";
 import Hero from '@/components/hero';
 import Carousal from '@/components/carousal';
+import Footer from '@/components/footer';
 
 
 export default function Home() {  
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar/>
       <Hero/>
       <Carousal/>
+      <Footer/>
     </div>
   );
 }

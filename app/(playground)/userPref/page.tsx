@@ -21,7 +21,7 @@ export default function UserPref() {
       left: "2%",
       top: "10%",
       zIndex: 3,
-      boxShadow: "0 0 0 rgba(0,0,0,0.3)",
+      boxShadow: "0 0 5px rgba(0,0,0,0.3)",
     },
     {
       height: "35vh",
