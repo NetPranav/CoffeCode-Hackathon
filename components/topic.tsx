@@ -1,21 +1,22 @@
+'use client'
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const SiteTopicSelector = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event:any) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleTopicClick = (topic) => {
+  const handleTopicClick = (topic: string) => {
     console.log(`Selected topic: ${topic}`);
     // You might want to navigate or set state based on the selected topic
     // For example: router.push(`/next-step?topic=${topic}`);
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = (event:any) => {
     event.preventDefault();
     console.log(`Searching for: ${searchTerm}`);
     // You might want to navigate or set state based on the search term
@@ -33,7 +34,7 @@ const SiteTopicSelector = () => {
         <div className="w-1/3 bg-gray-200 flex items-center justify-center relative overflow-hidden">
           {/* This div represents the image on the left */}
           <img
-            src="/images/fabric-background.jpg" // Replace with your actual image path
+            src="/Web-demo-playground.jpg" // Replace with your actual image path
             alt="Background fabric"
             className="absolute inset-0 h-full w-full object-cover"
           />
