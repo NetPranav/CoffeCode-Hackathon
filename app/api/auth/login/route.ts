@@ -5,6 +5,7 @@ import vine, { errors } from "@vinejs/vine";
 import ErrorReporter from "@/validator/ErrorReporter";
 import bcrypt from "bcryptjs";
 import { User } from "@/model/user";
+
 // for db connection
 connect();
 
@@ -31,12 +32,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           status: 400,
-          errors:{
+          errors: {
             password: "Incorrect password",
           }
-        
         },
-        { status: 200 }
+        { status: 400 } // Changed to 400 status
       );
     }
     return NextResponse.json(
@@ -46,14 +46,24 @@ export async function POST(req: NextRequest) {
           email: "User with this email does not exist",
         },
       },
-      { status: 200 }
+      { status: 400 } // Changed to 400 status
     );
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return NextResponse.json(
         { status: 400, errors: error.messages },
-        { status: 200 }
+        { status: 400 } // Changed to 400 status
       );
     }
+    
+    // Handle any other unexpected errors
+    console.error("Login error:", error);
+    return NextResponse.json(
+      {
+        status: 500,
+        message: "Internal server error",
+      },
+      { status: 500 }
+    );
   }
 }

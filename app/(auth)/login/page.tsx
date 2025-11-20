@@ -106,7 +106,7 @@ export default function Login() {
         <div className={`absolute top-8 left-8 transition-all duration-500 ${
           isLeaving ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'
         }`}>
-          <h1 className="text-2xl font-bold text-black">Webgen</h1>
+          <img src="/logo.png" alt="WebGen" className="w-48 invert"/>
         </div>
 
         {/* Vertical Text - Left Bottom */}

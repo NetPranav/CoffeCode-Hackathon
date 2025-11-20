@@ -1,16 +1,18 @@
-"use client"
-import React from 'react'
-import {signOut} from 'next-auth/react'
-// import { redirect } from 'next/dist/server/api-utils'
+"use client";
+import React from "react";
+import { signOut } from "next-auth/react";
 
-export default function signOutButton() {
+export default function SignOutButton() {
+  const handleSignOut = () => {
+    signOut({ callbackUrl: '/login', redirect: true });
+  };
+
   return (
-    <div>
-      <button className='bg-orange-300 rounded-md p-2 mt-100' 
-      onClick={()=> signOut({callbackUrl:'/login',redirect:true}) 
-      }>signOut</button>
-    </div>
-  )
+    <button
+      onClick={handleSignOut}
+      className="flex items-center w-full px-3 py-2 text-gray-100 hover:text-red-500 hover:bg-gray-700 rounded-md transition-colors duration-200 text-left"
+    >
+      Sign Out
+    </button>
+  );
 }
-
-
